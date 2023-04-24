@@ -40,6 +40,7 @@ const SearchInput = ({
           API_KEY={API_KEY}
           setLocation={setLocation}
           setSearchInputIsOpen={setSearchInputIsOpen}
+          setInputValue={setInputValue}
         />
       </div>
     </form>

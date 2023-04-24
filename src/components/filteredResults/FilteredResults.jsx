@@ -9,6 +9,7 @@ const FilteredResults = ({
   API_KEY,
   setLocation,
   setSearchInputIsOpen,
+  setInputValue,
 }) => {
   const URL = `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${inputValue}`;
   const [fetchError, setFetchError] = useState(null);
@@ -56,14 +57,17 @@ const FilteredResults = ({
           ? 'filtered-results filtered-results--active'
           : 'filtered-results'
       }
-      tabIndex={2}
       size={results.length}
+      multiple={true}
+      tabIndex={2}
     >
       {results.map((result) => (
         <FilteredResult
           resultName={result.name}
           setLocation={setLocation}
           setSearchInputIsOpen={setSearchInputIsOpen}
+          setInputValue={setInputValue}
+          key={result.id}
         />
       ))}
     </select>

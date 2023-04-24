@@ -1,21 +1,20 @@
 import React from 'react';
 import './FilteredResult.scss';
 
-const FilteredResults = ({ resultName, setLocation, setSearchInputIsOpen }) => {
+const FilteredResults = ({
+  resultName,
+  setLocation,
+  setSearchInputIsOpen,
+  setInputValue,
+}) => {
   const handleClick = () => {
     setLocation(resultName);
     setSearchInputIsOpen(false);
+    setInputValue('');
   };
 
   return (
-    <option
-      onClick={handleClick}
-      className="filtered-result"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') handleClick();
-      }}
-    >
+    <option onClick={handleClick} className="filtered-result">
       {resultName}
     </option>
   );
