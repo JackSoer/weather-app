@@ -1,0 +1,17 @@
+@import '../../Scss/var.scss';
+
+.filtered-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  border: 1px solid $homeTextColor;
+  background-color: white;
+  border-radius: 5px;
+  display: none;
+  height: min-content;
+
+  &--active {
+    display: block;
+  }
+}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './LocationSection.scss';
 
-import SearchInput from '../searchInput/SearchInput';
+import SearchForm from '../searchInput/SearchForm';
 
-const LocationSection = () => {
+const LocationSection = ({ setLocation, location, API_KEY }) => {
   const [searchInputIsOpen, setSearchInputIsOpen] = useState(false);
 
   return (
@@ -13,8 +13,13 @@ const LocationSection = () => {
         alt=""
         className="location-section__location-icon"
       />
-      <p className="location-section__name">New York</p>
-      <SearchInput searchInputIsOpen={searchInputIsOpen} />
+      <h1 className="location-section__name">{location}</h1>
+      <SearchForm
+        searchInputIsOpen={searchInputIsOpen}
+        setLocation={setLocation}
+        setSearchInputIsOpen={setSearchInputIsOpen}
+        API_KEY={API_KEY}
+      />
       <button
         className="location-section__search-btn"
         aria-label="search"

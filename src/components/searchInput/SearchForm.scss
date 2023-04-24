@@ -1,0 +1,35 @@
+@import '../../Scss/var.scss';
+
+.search-form {
+  position: absolute;
+  right: 0;
+  left: 125px;
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &__box {
+    position: relative;
+  }
+
+  &__search-input {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: rgb(110, 252, 252);
+    border: 2px solid $homeTextColor;
+    color: $homeTextColor;
+    font-size: 18px;
+    padding: 5px 22px 5px 5px;
+  }
+
+  &--active {
+    left: 0;
+    opacity: 1;
+  }
+
+  &__search-label {
+    position: absolute;
+    z-index: -1;
+    left: -99999px;
+  }
+}

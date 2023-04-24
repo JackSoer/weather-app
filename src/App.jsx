@@ -6,14 +6,16 @@ import Home from './pages/home/Home';
 import For7Days from './pages/for7Days/For7Days';
 
 function App() {
+  const API_KEY = '3f9512999515455094c84127232004';
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
+      element: <Home API_KEY={API_KEY} />,
     },
     {
       path: '/For7Days',
-      element: <For7Days />,
+      element: <For7Days API_KEY={API_KEY} />,
     },
   ]);
 
