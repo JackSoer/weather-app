@@ -4,9 +4,11 @@ import axios from 'axios';
 
 import Loading from '../loading/Loading';
 import WeatherInfo from '../weatherInfo/WeatherInfo';
+import Error from '../error/Error';
 
 const CurrentWeather = ({ API_KEY, location }) => {
   const URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}&aqi=no`;
+
   const [currentWeather, setCurrentWeather] = useState({});
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -59,10 +61,14 @@ const CurrentWeather = ({ API_KEY, location }) => {
       {!isLoading && !fetchError && (
         <WeatherInfo currentWeather={currentWeather} />
       )}
-      {isLoading && !fetchError && <Loading />}
+      {isLoading && !fetchError && (
+        <div className="container">
+          <Loading />
+        </div>
+      )}
       {fetchError && !isLoading && (
         <div className="container">
-          <p className="error">{fetchError}</p>
+          <Error errorText={fetchError} />
         </div>
       )}
     </div>

@@ -7,6 +7,12 @@
   height: 100%;
   width: 80%;
 
+  &__name-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__location-icon,
   &__search-icon {
     width: 20px;

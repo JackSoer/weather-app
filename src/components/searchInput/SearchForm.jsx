@@ -3,13 +3,16 @@ import './SearchForm.scss';
 
 import FilteredResults from '../filteredResults/FilteredResults';
 
-const SearchInput = ({
-  searchInputIsOpen,
-  setLocation,
-  setSearchInputIsOpen,
-  API_KEY,
-}) => {
-  const [inputValue, setInputValue] = useState('');
+const SearchInput = (props) => {
+  const {
+    searchInputIsOpen,
+    setLocation,
+    setSearchInputIsOpen,
+    API_KEY,
+    inputValue,
+    setInputValue,
+    inputRef,
+  } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ const SearchInput = ({
           onChange={(e) => setInputValue(e.target.value)}
           autoComplete="off"
           tabIndex={1}
+          ref={inputRef}
         />
         <label htmlFor="search" className="search-form__search-label">
           Enter your city or town.

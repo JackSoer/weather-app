@@ -14,7 +14,7 @@ const FilteredResults = ({
   };
 
   return (
-    <option onClick={handleClick} className="filtered-result">
+    <option className="filtered-result" onClick={handleClick}>
       {resultName}
     </option>
   );

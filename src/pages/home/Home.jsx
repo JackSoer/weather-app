@@ -4,9 +4,7 @@ import './Home.scss';
 import Navbar from '../../components/navbar/Navbar';
 import CurrentWeather from '../../components/currentWeather/CurrentWeather';
 
-const Home = ({ API_KEY }) => {
-  const [location, setLocation] = useState('New York');
-
+const Home = ({ API_KEY, location, setLocation }) => {
   return (
     <div className="home">
       <Navbar setLocation={setLocation} location={location} API_KEY={API_KEY} />
