@@ -3,7 +3,7 @@ import './Navbar.scss';
 import { Link } from 'react-router-dom';
 import { SearchContextProvider } from '../../context/SearchContext';
 
-import LocationSection from '../locationSection/locationSection';
+import LocationSection from '../locationSection/LocationSection';
 
 const Navbar = () => {
   return (
