@@ -5,7 +5,15 @@
   height: 100vh;
   overflow: hidden;
   padding: 45px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   background-color: rgba(2, 255, 255, 0.623);
   color: $homeTextColor;
+
+  &--sunny {
+    background-color: rgb(255, 215, 141);
+  }
 }

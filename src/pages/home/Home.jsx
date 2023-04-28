@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useContext } from 'react';
+import WeatherContext from '../../context/WeatherContext';
 import './Home.scss';
 
 import Navbar from '../../components/navbar/Navbar';
 import CurrentWeather from '../../components/currentWeather/CurrentWeather';
+import WeatherByDaysAndHours from '../../components/WeatherByDaysAndHours/WeatherByDaysAndHours';
 
-const Home = ({ API_KEY, location, setLocation }) => {
+const Home = () => {
+  const { currentWeather } = useContext(WeatherContext);
+
   return (
-    <div className="home">
-      <Navbar setLocation={setLocation} location={location} API_KEY={API_KEY} />
-      <CurrentWeather API_KEY={API_KEY} location={location} />
+    <div
+      className={
+        currentWeather.condition === 'Sunny' ? 'home home--sunny' : 'home'
+      }
+    >
+      <Navbar />
+      <CurrentWeather />
+      <WeatherByDaysAndHours />
     </div>
   );
 };

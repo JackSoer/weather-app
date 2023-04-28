@@ -1,77 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './FilteredResults.scss';
+import { useContext } from 'react';
+import SearchContext from '../../context/SearchContext';
 
 import Error from '../error/Error';
 import Loading from '../loading/Loading';
 import FilteredResultsFeed from '../filteredResultsFeed/FilteredResultsFeed';
 
-const FilteredResults = (props) => {
-  const {
-    inputValue,
-    API_KEY,
-    setLocation,
-    setSearchInputIsOpen,
-    setInputValue,
-  } = props;
+const FilteredResults = () => {
+  const { fetchError, isLoading, results, inputValue } =
+    useContext(SearchContext);
 
-  const URL = `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${inputValue}`;
-
-  const [fetchError, setFetchError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState([]);
-
-  useEffect(() => {
-    if (!inputValue) {
-      return;
-    }
-
-    let isMounted = true;
-    const source = axios.CancelToken.source();
-
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      try {
-        const response = await axios.get(URL, { cancelToken: source.token });
-
-        if (isMounted) {
-          setResults(response.data);
-          setFetchError(null);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setFetchError(err.message);
-          setResults([]);
-        }
-      } finally {
-        isMounted && setIsLoading(false);
-      }
-    };
-
-    fetchData();
-
-    const cleanUp = () => {
-      isMounted = false;
-      source.cancel();
-    };
-
-    return cleanUp;
-  }, [inputValue]);
+  const locationIsFound = results.length > 0 && !isLoading && !fetchError;
 
   return (
     <>
-      {!fetchError && !isLoading && (
-        <FilteredResultsFeed
-          results={results}
-          setLocation={setLocation}
-          setSearchInputIsOpen={setSearchInputIsOpen}
-          setInputValue={setInputValue}
-        />
-      )}
-      {!results.length && inputValue && !isLoading && (
+      {locationIsFound && <FilteredResultsFeed />}
+      {!locationIsFound && inputValue.length > 5 && (
         <div className="error-container">
           <Error errorText="This location isn't found" />
+        </div>
+      )}
+      {inputValue.length < 5 && inputValue && !locationIsFound && (
+        <div className="error-container">
+          <p className="advice">
+            Continue typing the first letters of the location
+          </p>
         </div>
       )}
       {fetchError && inputValue && !isLoading && (
@@ -79,7 +33,7 @@ const FilteredResults = (props) => {
           <Error errorText={fetchError} />
         </div>
       )}
-      {isLoading && !fetchError && (
+      {isLoading && !fetchError && inputValue && (
         <div className="loading-container">
           <Loading />
         </div>

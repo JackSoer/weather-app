@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import WeatherContext from '../../context/WeatherContext';
 import './WeatherInfo.scss';
 
-const WeatherInfo = ({ currentWeather }) => {
+const WeatherInfo = () => {
+  const { currentWeather } = useContext(WeatherContext);
+
   return (
     <div className="weather-info">
       <div className="container">

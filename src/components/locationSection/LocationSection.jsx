@@ -1,13 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
+import { useContext } from 'react';
+import WeatherContext from '../../context/WeatherContext';
+import SearchContext from '../../context/SearchContext';
 import './LocationSection.scss';
 
-import SearchForm from '../searchInput/SearchForm';
+import SearchForm from '../searchForm/SearchForm';
 
-const LocationSection = ({ setLocation, location, API_KEY }) => {
-  const inputRef = useRef();
-
-  const [searchInputIsOpen, setSearchInputIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+const LocationSection = () => {
+  const { location } = useContext(WeatherContext);
+  const { inputRef, setSearchInputIsOpen, setInputValue, searchInputIsOpen } =
+    useContext(SearchContext);
 
   const handleClick = () => {
     setSearchInputIsOpen(!searchInputIsOpen);
@@ -18,7 +20,13 @@ const LocationSection = ({ setLocation, location, API_KEY }) => {
 
   return (
     <div className="nav__location-section location-section">
-      <div className="location-section__name-box">
+      <div
+        className={
+          searchInputIsOpen
+            ? 'location-section__name-box location-section__name-box--non-active'
+            : 'location-section__name-box'
+        }
+      >
         <img
           src="./images/icons/location.svg"
           alt=""
@@ -26,15 +34,7 @@ const LocationSection = ({ setLocation, location, API_KEY }) => {
         />
         <h1 className="location-section__name">{location}</h1>
       </div>
-      <SearchForm
-        searchInputIsOpen={searchInputIsOpen}
-        setLocation={setLocation}
-        setSearchInputIsOpen={setSearchInputIsOpen}
-        API_KEY={API_KEY}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        inputRef={inputRef}
-      />
+      <SearchForm />
       <button
         className="location-section__search-btn"
         aria-label="search"

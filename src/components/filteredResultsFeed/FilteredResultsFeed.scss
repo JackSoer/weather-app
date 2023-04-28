@@ -11,6 +11,9 @@
   border-radius: 5px;
   display: none;
   overflow: hidden;
+  width: max-content;
+  max-width: 260px;
+  min-width: 100%;
 
   &--active {
     display: block;

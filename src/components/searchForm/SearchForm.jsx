@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './SearchForm.scss';
+import SearchContext from '../../context/SearchContext';
 
 import FilteredResults from '../filteredResults/FilteredResults';
 
-const SearchInput = (props) => {
-  const {
-    searchInputIsOpen,
-    setLocation,
-    setSearchInputIsOpen,
-    API_KEY,
-    inputValue,
-    setInputValue,
-    inputRef,
-  } = props;
+const SearchForm = () => {
+  const { searchInputIsOpen, setInputValue, inputValue, inputRef } =
+    useContext(SearchContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,20 +29,15 @@ const SearchInput = (props) => {
           autoComplete="off"
           tabIndex={1}
           ref={inputRef}
+          placeholder="New York"
         />
         <label htmlFor="search" className="search-form__search-label">
           Enter your city or town.
         </label>
-        <FilteredResults
-          inputValue={inputValue}
-          API_KEY={API_KEY}
-          setLocation={setLocation}
-          setSearchInputIsOpen={setSearchInputIsOpen}
-          setInputValue={setInputValue}
-        />
+        <FilteredResults />
       </div>
     </form>
   );
 };
 
-export default SearchInput;
+export default SearchForm;

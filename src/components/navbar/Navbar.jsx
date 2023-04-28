@@ -1,18 +1,17 @@
 import React from 'react';
 import './Navbar.scss';
 import { Link } from 'react-router-dom';
+import { SearchContextProvider } from '../../context/SearchContext';
 
 import LocationSection from '../locationSection/locationSection';
 
-const Navbar = ({ setLocation, location, API_KEY }) => {
+const Navbar = () => {
   return (
     <nav className="nav">
       <div className="container nav__container">
-        <LocationSection
-          setLocation={setLocation}
-          location={location}
-          API_KEY={API_KEY}
-        />
+        <SearchContextProvider>
+          <LocationSection />
+        </SearchContextProvider>
         <Link to="/For7Days" className="nav__schedule-link">
           <img
             className="nav__schedule-link-icon"

@@ -6,28 +6,35 @@
   position: relative;
   height: 100%;
   width: 80%;
+  padding-right: 40px;
 
   &__name-box {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    &--non-active {
+      visibility: hidden;
+    }
   }
 
   &__location-icon,
   &__search-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   &__search-btn {
+    position: absolute;
+    right: 0;
     cursor: pointer;
     background-color: transparent;
     height: 27px;
     width: 27px;
-    margin-right: 4px;
     border-radius: 50%;
     transition: all 0.3s ease;
     z-index: 1000;
+    margin-right: 4px;
 
     &:hover {
       background-color: white;
