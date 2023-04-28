@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './weatherByHoursSlider.scss';
+import './WeatherByHoursSlider.scss';
 import Slider from 'infinite-react-carousel';
 
 import WeatherByHoursItem from '../weatherByHoursItem/WeatherByHoursItem';
