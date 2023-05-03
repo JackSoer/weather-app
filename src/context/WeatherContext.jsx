@@ -5,7 +5,9 @@ const WeatherContext = createContext();
 
 export const WeatherContextProvider = ({ children }) => {
   const API_KEY = '3f9512999515455094c84127232004';
-  const [location, setLocation] = useState('New York');
+  const [location, setLocation] = useState(
+    localStorage.getItem('location') || 'New York'
+  );
   const [currentWeather, setCurrentWeather] = useState({});
 
   const URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}&aqi=no`;

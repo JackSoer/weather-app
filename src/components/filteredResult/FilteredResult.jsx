@@ -17,9 +17,9 @@ const FilteredResults = ({ resultName }) => {
   };
 
   return (
-    <option className="filtered-result" onClick={handleClick}>
+    <div className="filtered-result" onClick={handleClick}>
       {resultName}
-    </option>
+    </div>
   );
 };
 

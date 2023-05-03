@@ -11,23 +11,30 @@ const FilteredResults = () => {
   const { fetchError, isLoading, results, inputValue } =
     useContext(SearchContext);
 
-  const locationIsFound = results.length > 0 && !isLoading && !fetchError;
-
   return (
     <>
-      {locationIsFound && <FilteredResultsFeed />}
-      {!locationIsFound && inputValue.length > 5 && (
-        <div className="error-container">
-          <Error errorText="This location isn't found" />
-        </div>
+      {results.length > 0 && !isLoading && !fetchError && (
+        <FilteredResultsFeed />
       )}
-      {inputValue.length < 5 && inputValue && !locationIsFound && (
-        <div className="error-container">
-          <p className="advice">
-            Continue typing the first letters of the location
-          </p>
-        </div>
-      )}
+      {results.length < 1 &&
+        !isLoading &&
+        !fetchError &&
+        inputValue.length >= 5 && (
+          <div className="error-container">
+            <Error errorText="This location isn't found" />
+          </div>
+        )}
+      {inputValue.length < 5 &&
+        inputValue &&
+        results.length < 1 &&
+        !isLoading &&
+        !fetchError && (
+          <div className="error-container">
+            <p className="advice">
+              Continue typing the first letters of the location
+            </p>
+          </div>
+        )}
       {fetchError && inputValue && !isLoading && (
         <div className="error-container">
           <Error errorText={fetchError} />

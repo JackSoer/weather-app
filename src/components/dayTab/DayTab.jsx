@@ -5,7 +5,7 @@ import ForecastWeatherContext from '../../context/ForecastWeatherContext';
 const DayTab = ({ date }) => {
   const { setDate } = useContext(ForecastWeatherContext);
 
-  const formatDate = () => {
+  const formateDate = () => {
     const today = new Date();
     const newDate = new Date(date);
 
@@ -28,7 +28,7 @@ const DayTab = ({ date }) => {
 
   return (
     <button className="day-tab" onClick={handleDate}>
-      {formatDate()}
+      {formateDate()}
     </button>
   );
 };

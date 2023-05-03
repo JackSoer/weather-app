@@ -17,20 +17,17 @@ const FilteredResultsFeed = () => {
   };
 
   return (
-    <select
+    <div
       className={
         results.length
           ? 'filtered-results-feed filtered-results-feed--active'
           : 'filtered-results-feed'
       }
-      size={getUniqNames(results).length}
-      tabIndex={2}
-      multiple={true}
     >
       {getUniqNames(results).map((result) => (
         <FilteredResult resultName={result} key={result} />
       ))}
-    </select>
+    </div>
   );
 };
 

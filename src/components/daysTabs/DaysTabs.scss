@@ -1,8 +1,9 @@
 .days-tabs {
+  width: 100%;
   .container {
     display: flex;
     align-items: center;
     gap: 12px;
-    justify-content: center;
+    justify-content: space-between;
   }
 }

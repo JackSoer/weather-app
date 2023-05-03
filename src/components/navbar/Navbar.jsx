@@ -9,9 +9,7 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <div className="container nav__container">
-        <SearchContextProvider>
-          <LocationSection />
-        </SearchContextProvider>
+        <LocationSection />
         <Link to="/For7Days" className="nav__schedule-link">
           <img
             className="nav__schedule-link-icon"

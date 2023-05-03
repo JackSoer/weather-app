@@ -8,10 +8,16 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
-  padding: 15px 0 20px 0;
+  padding: 15px 15px 20px;
+  width: 100%;
+  transition: all 0.3s ease;
 
   &--sunny {
     background-color: rgb(255, 229, 181);
+  }
+
+  &--opacity {
+    opacity: 0.5;
   }
 
   &__img {
@@ -28,7 +34,6 @@
   &__time {
     color: rgba(14, 11, 59, 0.801);
     font-weight: 500;
-    font-size: 13px;
     text-align: center;
     letter-spacing: 0.5px;
   }
