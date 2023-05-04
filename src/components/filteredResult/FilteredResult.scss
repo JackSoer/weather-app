@@ -5,6 +5,13 @@
   font-size: 16px;
   color: $homeTextColor;
   border-bottom: 1px solid $homeTextColor;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: white;
+    background-color: $homeTextColor;
+  }
 
   &:last-child {
     border-bottom: none;

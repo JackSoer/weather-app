@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './FilteredResult.scss';
-import { useContext } from 'react';
 import SearchContext from '../../context/SearchContext';
 import WeatherContext from '../../context/WeatherContext';
 
@@ -10,10 +9,9 @@ const FilteredResults = ({ resultName }) => {
 
   const handleClick = () => {
     setLocation(resultName);
+    saveLocation(resultName);
     setSearchInputIsOpen(false);
     setInputValue('');
-
-    saveLocation(resultName);
   };
 
   return (

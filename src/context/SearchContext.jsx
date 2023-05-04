@@ -1,19 +1,17 @@
-import { createContext, useState, useRef, useEffect, useContext } from 'react';
+import { createContext, useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import WeatherContext from './WeatherContext';
+import { API_KEY } from '../data/constans';
 
 const SearchContext = createContext();
 
 export const SearchContextProvider = ({ children }) => {
-  const { API_KEY } = useContext(WeatherContext);
-
   const inputRef = useRef();
 
-  const [searchInputIsOpen, setSearchInputIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const URL = `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${inputValue}`;
+  const url = `http://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${inputValue}`;
 
+  const [searchInputIsOpen, setSearchInputIsOpen] = useState(false);
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -21,6 +19,7 @@ export const SearchContextProvider = ({ children }) => {
   useEffect(() => {
     if (!inputValue) {
       setResults([]);
+
       return;
     }
 
@@ -31,7 +30,7 @@ export const SearchContextProvider = ({ children }) => {
       setIsLoading(true);
 
       try {
-        const response = await axios.get(URL, { cancelToken: source.token });
+        const response = await axios.get(url, { cancelToken: source.token });
 
         if (isMounted) {
           setResults(response.data);

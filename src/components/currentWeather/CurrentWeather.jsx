@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './CurrentWeather.scss';
+import WeatherContext from '../../context/WeatherContext';
 
 import Loading from '../loading/Loading';
 import WeatherInfo from '../weatherInfo/WeatherInfo';
 import Error from '../error/Error';
-import WeatherContext from '../../context/WeatherContext';
 
 const CurrentWeather = () => {
   const { fetchError, isLoading } = useContext(WeatherContext);

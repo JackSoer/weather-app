@@ -1,34 +1,26 @@
 import React, { useContext } from 'react';
 import './DayTab.scss';
 import ForecastWeatherContext from '../../context/ForecastWeatherContext';
+import formateDate from '../../utils/formateDate';
 
-const DayTab = ({ date }) => {
-  const { setDate } = useContext(ForecastWeatherContext);
-
-  const formateDate = () => {
-    const today = new Date();
-    const newDate = new Date(date);
-
-    if (today.getDate() === newDate.getDate()) {
-      const options = { day: 'numeric', month: 'short' };
-      const formatedTodayDate = newDate.toLocaleString('en-US', options);
-
-      return 'Today, ' + formatedTodayDate;
-    }
-
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
-    const formatedDate = newDate.toLocaleString('en-US', options);
-
-    return formatedDate;
-  };
+const DayTab = ({ dayDate }) => {
+  const { setDate, date } = useContext(ForecastWeatherContext);
+  const isChosenDay = date === dayDate;
 
   const handleDate = () => {
-    setDate(date);
+    setDate(dayDate);
   };
 
   return (
-    <button className="day-tab" onClick={handleDate}>
-      {formateDate()}
+    <button
+      className={
+        isChosenDay
+          ? 'day-tab day-tab--active day-tab--hover-active-off'
+          : 'day-tab'
+      }
+      onClick={handleDate}
+    >
+      {formateDate(dayDate)}
     </button>
   );
 };

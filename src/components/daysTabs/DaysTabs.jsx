@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import './DaysTabs.scss';
+import ForecastWeatherContext from '../../context/ForecastWeatherContext';
 
 import DayTab from '../dayTab/DayTab';
-import ForecastWeatherContext from '../../context/ForecastWeatherContext';
 
 const DaysTabs = () => {
   const { forecast } = useContext(ForecastWeatherContext);
@@ -11,7 +11,7 @@ const DaysTabs = () => {
     <div className="days-tabs">
       <div className="container">
         {forecast.map((forecastday) => (
-          <DayTab date={forecastday.date} key={forecastday.date} />
+          <DayTab dayDate={forecastday.date} key={forecastday.date} />
         ))}
       </div>
     </div>

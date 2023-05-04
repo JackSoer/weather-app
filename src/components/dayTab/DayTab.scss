@@ -5,4 +5,35 @@
   font-weight: 500;
   font-size: 14px;
   color: $homeTextColor;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+  padding: 5px 3px;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    border: 2px solid $homeTextColor;
+    transition: all 0.3s ease;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+
+  &--active {
+    color: white;
+    background-color: $homeTextColor;
+  }
+
+  &--hover-active-off {
+    &:hover:after {
+      opacity: 0;
+    }
+  }
 }

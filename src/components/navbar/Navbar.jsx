@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navbar.scss';
 import { Link } from 'react-router-dom';
-import { SearchContextProvider } from '../../context/SearchContext';
 
 import LocationSection from '../locationSection/LocationSection';
 

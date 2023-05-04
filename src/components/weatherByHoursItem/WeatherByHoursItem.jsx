@@ -1,26 +1,11 @@
 import React, { useContext } from 'react';
 import WeatherContext from '../../context/WeatherContext';
 import './WeatherByHoursItem.scss';
-import getCurrentTime from '../../utils/getCurrentTime';
+import getCurrentTime from '../../utils/getCurrentTime.js';
+import formateTimeFromDate from '../../utils/formateTimeFromDate.js';
 
 const WeatherByHoursItem = ({ oneHour }) => {
   const { currentWeather } = useContext(WeatherContext);
-
-  const formateTimeFromDate = (date, withoutLetters = false) => {
-    const newTime = date.split(' ')[1];
-
-    const newTimeNumber = Number(newTime.split(':')[0]);
-
-    if (withoutLetters) {
-      return newTimeNumber;
-    }
-
-    if (newTimeNumber < 12) {
-      return newTime + ' A.M.';
-    } else {
-      return newTime + ' P.M.';
-    }
-  };
 
   const getClassList = () => {
     const isPastTime =

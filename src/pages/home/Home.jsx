@@ -1,7 +1,6 @@
-import React from 'react';
-import { useContext } from 'react';
-import WeatherContext from '../../context/WeatherContext';
+import React, { useContext } from 'react';
 import './Home.scss';
+import WeatherContext from '../../context/WeatherContext';
 
 import Navbar from '../../components/navbar/Navbar';
 import CurrentWeather from '../../components/currentWeather/CurrentWeather';

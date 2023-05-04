@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './FilteredResults.scss';
-import { useContext } from 'react';
 import SearchContext from '../../context/SearchContext';
 
 import Error from '../error/Error';
@@ -11,30 +10,25 @@ const FilteredResults = () => {
   const { fetchError, isLoading, results, inputValue } =
     useContext(SearchContext);
 
+  const haveResults = results.length > 0 && !isLoading && !fetchError;
+
   return (
     <>
       {results.length > 0 && !isLoading && !fetchError && (
         <FilteredResultsFeed />
       )}
-      {results.length < 1 &&
-        !isLoading &&
-        !fetchError &&
-        inputValue.length >= 5 && (
-          <div className="error-container">
-            <Error errorText="This location isn't found" />
-          </div>
-        )}
-      {inputValue.length < 5 &&
-        inputValue &&
-        results.length < 1 &&
-        !isLoading &&
-        !fetchError && (
-          <div className="error-container">
-            <p className="advice">
-              Continue typing the first letters of the location
-            </p>
-          </div>
-        )}
+      {!haveResults && inputValue.length >= 5 && (
+        <div className="error-container">
+          <Error errorText="This location isn't found" />
+        </div>
+      )}
+      {inputValue.length < 5 && inputValue && !haveResults && (
+        <div className="error-container">
+          <p className="advice">
+            Continue typing the first letters of the location
+          </p>
+        </div>
+      )}
       {fetchError && inputValue && !isLoading && (
         <div className="error-container">
           <Error errorText={fetchError} />

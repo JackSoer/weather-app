@@ -1,20 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './FilteredResultsFeed.scss';
-import { useContext } from 'react';
 import SearchContext from '../../context/SearchContext';
+import getUniqItems from '../../utils/getUniqItems.js';
 
 import FilteredResult from '../filteredResult/FilteredResult';
 
 const FilteredResultsFeed = () => {
   const { results } = useContext(SearchContext);
-
-  const getUniqNames = (arr) => {
-    const set = new Set();
-
-    arr.forEach((item) => set.add(item.name));
-
-    return Array.from(set);
-  };
 
   return (
     <div
@@ -24,7 +16,7 @@ const FilteredResultsFeed = () => {
           : 'filtered-results-feed'
       }
     >
-      {getUniqNames(results).map((result) => (
+      {getUniqItems(results).map((result) => (
         <FilteredResult resultName={result} key={result} />
       ))}
     </div>

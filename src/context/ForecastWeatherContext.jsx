@@ -1,33 +1,17 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import WeatherContext from './WeatherContext';
 import axios from 'axios';
+import { API_KEY } from '../data/constans';
 
 const ForecastWeatherContext = createContext();
 
 export const ForecastWeatherContextProvider = ({ children }) => {
-  const { API_KEY, location } = useContext(WeatherContext);
-  const URL = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`;
+  const { location } = useContext(WeatherContext);
+  const url = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`;
 
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [forecast, setForecast] = useState([]);
-
-  // const formateMonth = (monthNum) => {
-  //   if (monthNum < 10) {
-  //     return `0${monthNum}`;
-  //   } else {
-  //     return monthNum;
-  //   }
-  // };
-
-  // const formateDate = () => {
-  //   const today = new Date();
-  //   const newDate = `${today.getFullYear()}-${formateMonth(
-  //     today.getMonth() + 1
-  //   )}-${today.getDate()}`;
-
-  //   return newDate;
-  // };
   const [date, setDate] = useState(null);
 
   useEffect(() => {
@@ -38,7 +22,7 @@ export const ForecastWeatherContextProvider = ({ children }) => {
       setIsLoading(true);
 
       try {
-        const response = await axios.get(URL, { cancelToken: source.token });
+        const response = await axios.get(url, { cancelToken: source.token });
 
         if (isMounted) {
           setForecast(response.data.forecast.forecastday);

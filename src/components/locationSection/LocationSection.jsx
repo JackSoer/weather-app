@@ -1,5 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import WeatherContext from '../../context/WeatherContext';
 import SearchContext from '../../context/SearchContext';
 import './LocationSection.scss';
@@ -11,6 +10,8 @@ const LocationSection = () => {
   const { inputRef, setSearchInputIsOpen, setInputValue, searchInputIsOpen } =
     useContext(SearchContext);
 
+  const searchRef = useRef();
+
   const handleClick = () => {
     setSearchInputIsOpen(!searchInputIsOpen);
     setInputValue('');
@@ -18,8 +19,23 @@ const LocationSection = () => {
     inputRef.current.focus();
   };
 
+  useEffect(() => {
+    const closeHandler = (e) => {
+      if (!searchRef.current.contains(e.target)) {
+        setSearchInputIsOpen(false);
+        setInputValue('');
+      }
+    };
+
+    document.addEventListener('mousedown', closeHandler);
+
+    return () => {
+      document.removeEventListener('mousedown', closeHandler);
+    };
+  }, []);
+
   return (
-    <div className="nav__location-section location-section">
+    <div className="nav__location-section location-section" ref={searchRef}>
       <div
         className={
           searchInputIsOpen
