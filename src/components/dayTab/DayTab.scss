@@ -22,18 +22,22 @@
     transition: all 0.3s ease;
   }
 
-  &:hover:after {
-    opacity: 1;
-  }
-
   &--active {
     color: white;
     background-color: $homeTextColor;
   }
 
   &--hover-active-off {
+    @media (hover: hover) {
+      &:hover:after {
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (hover: hover) {
     &:hover:after {
-      opacity: 0;
+      opacity: 1;
     }
   }
 }

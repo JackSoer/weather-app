@@ -5,7 +5,7 @@
   gap: 10px;
   position: relative;
   height: 100%;
-  width: 80%;
+  width: 100%;
   padding-right: 40px;
 
   &__name-box {
@@ -36,8 +36,10 @@
     z-index: 1000;
     margin-right: 4px;
 
-    &:hover {
-      background-color: white;
+    @media (hover: hover) {
+      &:hover {
+        background-color: white;
+      }
     }
   }
 

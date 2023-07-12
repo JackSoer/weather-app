@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import './Home.scss';
 import WeatherContext from '../../context/WeatherContext';
 
-import Navbar from '../../components/navbar/Navbar';
 import CurrentWeather from '../../components/currentWeather/CurrentWeather';
 import WeatherByDaysAndHours from '../../components/WeatherByDaysAndHours/WeatherByDaysAndHours';
 
@@ -15,7 +14,6 @@ const Home = () => {
         currentWeather.condition === 'Sunny' ? 'home home--sunny' : 'home'
       }
     >
-      <Navbar />
       <CurrentWeather />
       <WeatherByDaysAndHours />
     </div>

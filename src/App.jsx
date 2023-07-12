@@ -4,16 +4,23 @@ import './Scss/general.scss';
 
 import Home from './pages/home/Home';
 import For7Days from './pages/for7Days/For7Days';
+import Layout from './pages/Layout';
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/For7Days',
-      element: <For7Days />,
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/For7Days',
+          element: <For7Days />,
+        },
+      ],
     },
   ]);
 

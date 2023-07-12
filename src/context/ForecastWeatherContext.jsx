@@ -7,7 +7,7 @@ const ForecastWeatherContext = createContext();
 
 export const ForecastWeatherContextProvider = ({ children }) => {
   const { location } = useContext(WeatherContext);
-  const url = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3`;
+  const url = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=10`;
 
   const [fetchError, setFetchError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

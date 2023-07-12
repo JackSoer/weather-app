@@ -8,13 +8,14 @@ const WeatherByHoursItem = ({ oneHour }) => {
   const { currentWeather } = useContext(WeatherContext);
 
   const getClassList = () => {
+    const isToday = new Date(oneHour.time).getDate() === new Date().getDate();
     const isPastTime =
       formateTimeFromDate(oneHour.time, true) < getCurrentTime();
     const isSunny = currentWeather.condition === 'Sunny';
 
-    if (isPastTime && isSunny) {
+    if (isPastTime && isSunny && isToday) {
       return 'weather-by-hours-item weather-by-hours-item--opacity weather-by-hours-item--sunny';
-    } else if (isPastTime) {
+    } else if (isPastTime && isToday) {
       return 'weather-by-hours-item weather-by-hours-item--opacity';
     } else if (isSunny) {
       return 'weather-by-hours-item weather-by-hours-item--sunny';

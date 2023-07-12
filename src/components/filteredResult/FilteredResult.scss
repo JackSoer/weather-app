@@ -8,12 +8,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
 
-  &:hover {
-    color: white;
-    background-color: $homeTextColor;
-  }
-
   &:last-child {
     border-bottom: none;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+      background-color: $homeTextColor;
+    }
   }
 }
